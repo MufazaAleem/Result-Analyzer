@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Percentage and Grade Calculator</title>
+  <style>
+    /* CSS styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .result {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Percentage and Grade Calculator</h1>
+    <div class="form-group">
+      <label for="totalMarks">Total Marks:</label>
+      <input type="number" id="totalMarks" placeholder="Enter total marks" required>
+    </div>
+    <div class="form-group">
+      <label for="obtainedMarks">Obtained Marks:</label>
+      <input type="number" id="obtainedMarks" placeholder="Enter obtained marks" required>
+    </div>
+    <button class="btn" onclick="calculatePercentageAndGrade()">Calculate</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculatePercentageAndGrade() {
+      var totalMarksInput = document.getElementById("totalMarks");
+      var obtainedMarksInput = document.getElementById("obtainedMarks");
+      var resultContainer = document.getElementById("result");
+
+      var totalMarks = parseFloat(totalMarksInput.value);
+      var obtainedMarks = parseFloat(obtainedMarksInput.value);
+
+      if (isNaN(totalMarks) || isNaN(obtainedMarks)) {
+        resultContainer.innerText = "Please enter valid numbers for total marks and obtained marks.";
+        return;
+      }
+
+      var percentage = (obtainedMarks / totalMarks) * 100;
+      var grade, remarks;
+
+      if (percentage >= 90) {
+        grade = "A+";
+        remarks = "Excellent!";
+      } else if (percentage >= 80) {
+        grade = "A";
+        remarks = "Very Good!";
+      } else if (percentage >= 70) {
+        grade = "B";
+        remarks = "Good!";
+      }       else if (percentage >= 60) {
+        grade = "C";
+        remarks = "Fair!";
+      } else if (percentage >= 50) {
+        grade = "D";
+        remarks = "Average!";
+      } else {
+        grade = "F";
+        remarks = "Fail!";
+      }
+
+      // Display the result
+      resultContainer.innerHTML = "Percentage: " + percentage.toFixed(2) + "%<br>Grade: " + grade + "<br>Remarks: " + remarks;
+    }
+  </script>
+</body>
+</html>
